@@ -4,6 +4,10 @@
   "workspaces": [
     "apps/*"
   ],
+  "scripts": {
+    "db:generate": "prisma generate",
+    "remix:dev": "yarn workspace @frontend-comparison/remix dev"
+  },
   "devDependencies": {
     "@types/node": "^20.2.5",
     "prisma": "^4.15.0",
