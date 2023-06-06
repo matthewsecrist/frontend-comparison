@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "db:generate": "prisma generate",
-    "remix:dev": "yarn workspace @frontend-comparison/remix dev"
+    "remix:dev": "yarn workspace @frontend-comparison/remix dev",
+    "next-app:dev": "yarn workspace @frontend-comparison/next-app dev"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
