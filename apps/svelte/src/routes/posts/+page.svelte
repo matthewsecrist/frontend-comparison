@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageData, ActionData } from './$types';
 
 	export let data: PageData;
 	export let { posts } = data;
@@ -11,6 +11,13 @@
 
 <main>
 	<h1>Posts</h1>
+
+	<form method="POST" action="?/createPost">
+		<input type="text" name="title" />
+		<input type="text" name="body" />
+		<button type="submit">Create Post</button>
+	</form>
+
 	<ul>
 		{#each posts as post}
 			<li>
