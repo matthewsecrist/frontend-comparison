@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
+	import type { PageData } from './$types';
+	import { enhance } from '$app/forms';
 
 	export let data: PageData;
-	export let { posts } = data;
 </script>
 
 <svelte:head>
@@ -12,14 +12,14 @@
 <main>
 	<h1>Posts</h1>
 
-	<form method="POST" action="?/createPost">
+	<form method="POST" action="?/createPost" use:enhance>
 		<input type="text" name="title" />
 		<input type="text" name="body" />
 		<button type="submit">Create Post</button>
 	</form>
 
 	<ul>
-		{#each posts as post}
+		{#each data.posts as post (post.id)}
 			<li>
 				<a href="/posts/{post.id}">
 					{post.title}

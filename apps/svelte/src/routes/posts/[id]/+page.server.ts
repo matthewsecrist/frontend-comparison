@@ -1,14 +1,7 @@
 import prisma from "$lib/prisma";
-import type { Post } from "@prisma/client";
-import type { PageServerLoad } from "./$types";
+import { error, redirect } from "@sveltejs/kit";
 
-import { error, redirect, type Actions } from "@sveltejs/kit";
-
-type OutputType = {
-  post: Post
-}
-
-export const load: PageServerLoad<OutputType> = async ({ params }) => {
+export const load = async ({ params }) => {
   const post = await prisma.post.findUnique({
     where: {
       id: params.id
@@ -24,12 +17,12 @@ export const load: PageServerLoad<OutputType> = async ({ params }) => {
   }
 }
 
-export const actions: Actions = {
+export const actions = {
   deletePost: async ({ params }) => {
     await prisma.post.delete({
       where: { id: params.id }
     })
 
-    return redirect(308, '/posts')
+    throw redirect(308, '/posts')
   }
 }

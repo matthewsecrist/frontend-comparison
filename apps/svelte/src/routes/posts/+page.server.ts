@@ -1,21 +1,13 @@
-import type { Post } from "@prisma/client";
 import prisma from "$lib/prisma";
-import type { PageServerLoad } from "./$types";
-import { fail, type Actions } from "@sveltejs/kit";
+import { fail } from "@sveltejs/kit";
 
-type OutputType = {
-  posts: Post[]
-}
-
-export const load: PageServerLoad<OutputType> = async () => {
-  const posts: Post[] = await prisma.post.findMany()
-
+export const load = async () => {
   return {
-    posts
+    posts: await prisma.post.findMany()
   }
 }
 
-export const actions: Actions = {
+export const actions = {
   createPost: async ({ request }) => {
     const data = await request.formData();
 
@@ -29,13 +21,11 @@ export const actions: Actions = {
       return fail(400, { body, missing: true })
     }
 
-    const post = await prisma.post.create({
+    return await prisma.post.create({
       data: {
         title,
         body
       }
     })
-
-    return { post }
   }
 }
