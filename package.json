@@ -8,7 +8,8 @@
     "db:generate": "prisma generate",
     "remix:dev": "yarn workspace @frontend-comparison/remix dev",
     "next-app:dev": "yarn workspace @frontend-comparison/next-app dev",
-    "next-pages:dev": "yarn workspace @frontend-comparison/next-pages dev"
+    "next-pages:dev": "yarn workspace @frontend-comparison/next-pages dev",
+    "svelte:dev": "yarn workspace @frontend-comparison/svelte dev"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
